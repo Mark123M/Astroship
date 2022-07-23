@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ballhit.mp3-23d1740117d9e877f7c6505c84ecb4f6.mp3str"
+
+[deps]
+
+source_file="res://Weapon/Ballhit.mp3"
+dest_files=[ "res://.import/Ballhit.mp3-23d1740117d9e877f7c6505c84ecb4f6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

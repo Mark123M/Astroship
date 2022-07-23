@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Collisions and detections/Hitbox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Collisions and detections/Hurtbox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Debris_simple.png" type="Texture" id=3]
+[ext_resource path="res://World/Debris1.gd" type="Script" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 5.33333
+height = 0.0
+
+[node name="Debris1" type="RigidBody2D" groups=[
+"world",
+]]
+collision_mask = 27
+gravity_scale = 0.0
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 2, 6 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 3, 3 )
+shape = SubResource( 1 )
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 3, 3 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 1 )
+
+[node name="Hurtbox" parent="." instance=ExtResource( 2 )]
+scale = Vector2( 3, 3 )
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 1 )
+
+[editable path="Hitbox"]
+[editable path="Hurtbox"]

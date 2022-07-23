@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SpinningSound.mp3-5b7d200a3b3ed439136b5bc1a7cbf475.mp3str"
+
+[deps]
+
+source_file="res://Vehicle/SpinningSound.mp3"
+dest_files=[ "res://.import/SpinningSound.mp3-5b7d200a3b3ed439136b5bc1a7cbf475.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

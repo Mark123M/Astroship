@@ -1,0 +1,151 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Weapon/Ball.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Weapon/Chain.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Vehicle/Spaceship.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ScreenShake.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.gd" type="Script" id=5]
+[ext_resource path="res://Camera2D.gd" type="Script" id=6]
+
+[node name="Player" type="Node2D"]
+scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 5 )
+
+[node name="Ball" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 229.406 )
+
+[node name="Chain" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 21.5256 )
+collision_mask = 11
+
+[node name="Chain2" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 37.5256 )
+collision_mask = 11
+
+[node name="Chain3" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 53.5256 )
+
+[node name="Chain4" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 69.5256 )
+
+[node name="Chain5" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 85.5256 )
+
+[node name="Chain6" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 101.526 )
+
+[node name="Chain7" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 117.526 )
+
+[node name="Chain8" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 133.526 )
+
+[node name="Chain9" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 149.526 )
+
+[node name="Chain10" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 164.276 )
+
+[node name="Chain11" parent="." groups=[
+"weapon",
+] instance=ExtResource( 2 )]
+position = Vector2( 0, 180.061 )
+
+[node name="Spaceship" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, -18.75 )
+
+[node name="CollisionPolygon2D" parent="Spaceship" index="1"]
+polygon = PoolVector2Array( 0, 0, -22.9167, 21.1667, -15.9722, 30.1944, -6.25, 31.5833, 0, 30.1944, 6.25, 31.5833, 17.3611, 30.1944, 22.2222, 21.1667, 0, 0 )
+
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+current = true
+zoom = Vector2( 1.5, 1.5 )
+script = ExtResource( 6 )
+
+[node name="ScreenShake" parent="Spaceship/Camera2D" instance=ExtResource( 4 )]
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+position = Vector2( -0.0643637, 21.2787 )
+node_a = NodePath("../Spaceship")
+node_b = NodePath("../Chain")
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="."]
+position = Vector2( 0, 29 )
+node_a = NodePath("../Chain")
+node_b = NodePath("../Chain2")
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="."]
+position = Vector2( 0, 45 )
+node_a = NodePath("../Chain2")
+node_b = NodePath("../Chain3")
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="."]
+position = Vector2( 0, 61 )
+node_a = NodePath("../Chain3")
+node_b = NodePath("../Chain4")
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="."]
+position = Vector2( 0, 77 )
+node_a = NodePath("../Chain4")
+node_b = NodePath("../Chain5")
+
+[node name="PinJoint2D6" type="PinJoint2D" parent="."]
+position = Vector2( 0, 93 )
+node_a = NodePath("../Chain5")
+node_b = NodePath("../Chain6")
+
+[node name="PinJoint2D7" type="PinJoint2D" parent="."]
+position = Vector2( 0, 109 )
+node_a = NodePath("../Chain6")
+node_b = NodePath("../Chain7")
+
+[node name="PinJoint2D8" type="PinJoint2D" parent="."]
+position = Vector2( 0, 125 )
+node_a = NodePath("../Chain7")
+node_b = NodePath("../Chain8")
+
+[node name="PinJoint2D9" type="PinJoint2D" parent="."]
+position = Vector2( 0, 141 )
+node_a = NodePath("../Chain8")
+node_b = NodePath("../Chain9")
+
+[node name="PinJoint2D10" type="PinJoint2D" parent="."]
+position = Vector2( 0, 156 )
+node_a = NodePath("../Chain9")
+node_b = NodePath("../Chain10")
+bias = 0.9
+
+[node name="PinJoint2D11" type="PinJoint2D" parent="."]
+position = Vector2( 0, 172.5 )
+node_a = NodePath("../Chain10")
+node_b = NodePath("../Chain11")
+bias = 0.9
+
+[node name="PinJoint2D12" type="PinJoint2D" parent="."]
+position = Vector2( 0, 188.888 )
+node_a = NodePath("../Chain11")
+node_b = NodePath("../Ball")
+bias = 0.9
+
+[editable path="Spaceship"]
+[editable path="Spaceship/Hurtbox"]

@@ -1,0 +1,160 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Backgrounds/tumblr_inline_n258tklDt11qhwjx8.png" type="Texture" id=2]
+[ext_resource path="res://Spawner/EnemyRammerSpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Spawner/BasicEnemySpawner.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Spawner/EnemyCurveSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://audio.gd" type="Script" id=6]
+[ext_resource path="res://Consumables/Health.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Spawner/EnemySpreadSpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Spawner/AsteroidSpawner.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI.gd" type="Script" id=10]
+[ext_resource path="res://GUI/startButtonNormal.png" type="Texture" id=11]
+[ext_resource path="res://Game.gd" type="Script" id=12]
+[ext_resource path="res://GUI/startButtonPressed.png" type="Texture" id=13]
+[ext_resource path="res://GUI/startButtonHover.png" type="Texture" id=14]
+[ext_resource path="res://GUI/quitButtonPressed.png" type="Texture" id=15]
+[ext_resource path="res://GUI/quitButtonNormal.png" type="Texture" id=16]
+[ext_resource path="res://GUI/quitButtonHover.png" type="Texture" id=17]
+[ext_resource path="res://Backgrounds/menuText.png" type="Texture" id=18]
+[ext_resource path="res://Spawner/PowerupSpawner.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Spawner/PowerupSpawner.gd" type="Script" id=20]
+[ext_resource path="res://Consumables/Shotgun.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Backgrounds/spacebackground.png" type="Texture" id=22]
+[ext_resource path="res://Backgrounds/menuTitle.png" type="Texture" id=23]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="Background" type="Node" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+motion_mirroring = Vector2( 1366, 822 )
+
+[node name="Sprite" type="Sprite" parent="Background/ParallaxBackground/ParallaxLayer"]
+texture = ExtResource( 22 )
+centered = false
+
+[node name="BGFrame1" type="TextureRect" parent="."]
+visible = false
+margin_left = -1995.0
+margin_top = -1382.0
+margin_right = 2869.0
+margin_bottom = 1879.0
+texture = ExtResource( 2 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="PinJoint2D" parent="Player" index="13"]
+position = Vector2( -0.0643637, 12.5287 )
+
+[node name="Shotgun" parent="." instance=ExtResource( 21 )]
+position = Vector2( 257, -64 )
+
+[node name="BasicEnemySpawner" parent="." instance=ExtResource( 4 )]
+
+[node name="EnemySpreadSpawner" parent="." instance=ExtResource( 8 )]
+
+[node name="Timer" parent="EnemySpreadSpawner" index="0"]
+wait_time = 4.0
+
+[node name="EnemyCurveSpawner" parent="." instance=ExtResource( 5 )]
+
+[node name="Timer" parent="EnemyCurveSpawner" index="0"]
+wait_time = 5.0
+
+[node name="EnemyRammerSpawner" parent="." instance=ExtResource( 3 )]
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource( 9 )]
+
+[node name="Timer" parent="AsteroidSpawner" index="0"]
+wait_time = 4.5
+
+[node name="PositionLocator" type="Node2D" parent="."]
+position = Vector2( -484, 0 )
+
+[node name="audio" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Title" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 313.049, 227.497 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 23 )
+
+[node name="Text" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 359.665, 199.951 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 18 )
+
+[node name="GUI" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 10 )
+
+[node name="Health" type="Label" parent="CanvasLayer/GUI"]
+margin_left = 45.0
+margin_top = 47.0
+margin_right = 111.0
+margin_bottom = 61.0
+text = "Health: 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="CanvasLayer/GUI"]
+margin_left = 512.0
+margin_top = 44.0
+margin_right = 579.0
+margin_bottom = 58.0
+text = "Score: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RetryButton" type="TextureButton" parent="CanvasLayer/GUI"]
+margin_left = 253.0
+margin_top = 175.0
+margin_right = 293.0
+margin_bottom = 215.0
+rect_scale = Vector2( 5, 5 )
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 13 )
+texture_hover = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="TextureButton" parent="CanvasLayer/GUI"]
+margin_left = 263.0
+margin_top = 260.0
+margin_right = 303.0
+margin_bottom = 300.0
+rect_scale = Vector2( 5, 5 )
+texture_normal = ExtResource( 16 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" parent="." instance=ExtResource( 7 )]
+position = Vector2( 169, -62 )
+
+[node name="PowerupSpawner" parent="." instance=ExtResource( 19 )]
+script = ExtResource( 20 )
+
+[editable path="Player"]
+[editable path="Player/Spaceship"]
+[editable path="Player/Spaceship/Hurtbox"]
+[editable path="BasicEnemySpawner"]
+[editable path="EnemySpreadSpawner"]
+[editable path="EnemyCurveSpawner"]
+[editable path="EnemyRammerSpawner"]
+[editable path="AsteroidSpawner"]
